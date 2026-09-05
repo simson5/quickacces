@@ -1,0 +1,310 @@
+/* ==========================================================================
+   1. VARIABLES DE COULEURS (Corrigées pour éviter la boucle infinie)
+   ========================================================================== */
+.root {
+    -app-bg-main: #24242b;       /* Fond de l'application */
+    -app-bg-card: #31313a;       /* Fond des blocs */
+    -app-bg-card-hover: #3a3a45; /* Fond des blocs au survol */
+    -app-bg-popup: #2d2d35;      /* Fond du popup */
+    -app-bg-input: #1a1a20;      /* Fond des champs de saisie */
+
+    -app-border-color: #4a4a55;  /* CORRIGÉ : Nom personnalisé pour la bordure */
+    -app-primary: #4f46e5;       /* Violet principal */
+    -app-primary-hover: #6366f1; /* Violet clair */
+    -app-primary-dark: #4338ca;  /* Violet foncé */
+
+    -app-text-main: #ffffff;     /* Texte blanc */
+    -app-text-muted: #d4d4d8;    /* Texte blanc cassé */
+}
+
+/* ==========================================================================
+   2. CONTENEURS ET GRILLES PRINCIPALES
+   ========================================================================== */
+.main-container {
+    -fx-background-color: -app-bg-main;
+    -fx-padding: 25px;
+}
+
+.top-bar {
+    -fx-padding: 0 0 10px 0;
+}
+
+.cards-grid {
+    -fx-background-color: transparent;
+}
+
+/* ==========================================================================
+   3. TEXTES ET TITRES SÉLECTIONNABLES
+   ========================================================================== */
+.header-title {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 20px 0;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -app-text-main;
+}
+
+.selectable-text-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -app-text-main;
+}
+
+.selectable-text-area {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.selectable-text-area .content {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 8px 0 0 0;
+}
+
+.selectable-text-area .text {
+    -fx-font-size: 12px;
+    -fx-fill: -app-text-muted;
+}
+
+/* ==========================================================================
+   4.1. STYLE DES BLOCS (CARDS)
+   ========================================================================== */
+.card-box {
+    -fx-background-color: -app-bg-card;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-color: -app-border-color;
+    -fx-border-width: 1px;
+    -fx-padding: 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 8, 0, 0, 4);
+}
+
+.card-box:hover {
+    -fx-background-color: -app-bg-card-hover;
+    -fx-border-color: -app-primary;
+    -fx-effect: dropshadow(three-pass-box, rgba(79, 70, 229, 0.4), 12, 0, 0, 6);
+    -fx-translate-y: -3px;
+}
+
+/* CORRECTION : On force une largeur minimale pour empêcher l'émoji de se transformer en "..." */
+.card-icon {
+    -fx-font-size: 22px;
+    -fx-min-width: 30px;
+    -fx-max-width: 30px;
+    -fx-alignment: center-left;
+}
+
+/* ==========================================================================
+   4.2. BOUTONS D'ACTION SUR LA CARTE (CACHÉS PAR DÉFAUT)
+   ========================================================================== */
+/* Règle commune pour masquer les 3 boutons par défaut et gérer l'espacement */
+.card-show-btn,
+.card-edit-btn,
+.card-delete-btn {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 2px 6px;
+    -fx-background-radius: 4px;
+    -fx-opacity: 0; /* Rendu invisible par défaut */
+
+    /* Évite que l'apparition des boutons ne compresse le texte du titre */
+    -fx-min-width: 25px;
+}
+
+/* Style individuel : Bouton Voir (ex: 👁️ ou 🌐) */
+.card-show-btn {
+    -fx-text-fill: #3b82f6; /* Bleu */
+}
+.card-show-btn:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.15);
+    -fx-scale-x: 1.1; -fx-scale-y: 1.1;
+}
+
+/* Style individuel : Bouton Éditer (ex: ✏️) */
+.card-edit-btn {
+    -fx-text-fill: #fbbf24; /* Jaune / Ambre */
+}
+.card-edit-btn:hover {
+    -fx-background-color: rgba(251, 191, 36, 0.15);
+    -fx-scale-x: 1.1; -fx-scale-y: 1.1;
+}
+
+/* Style individuel : Bouton Supprimer (🗑️) */
+.card-delete-btn {
+    -fx-text-fill: #ef4444; /* Rouge */
+}
+.card-delete-btn:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+    -fx-scale-x: 1.1; -fx-scale-y: 1.1;
+}
+
+/* RÈGLE MAGIQUE COHÉRENTE : Quand la carte est survolée, les 3 boutons apparaissent en même temps */
+.card-box:hover .card-show-btn,
+.card-box:hover .card-edit-btn,
+.card-box:hover .card-delete-btn {
+    -fx-opacity: 1;
+}
+
+/* ==========================================================================
+   5. BOUTON D'AJOUT PRINCIPAL (Bouton +)
+   ========================================================================== */
+.add-button {
+    -fx-background-color: -app-primary;
+    -fx-text-fill: -app-text-main;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50%;
+
+    -fx-min-width: 40px;  -fx-min-height: 40px;
+    -fx-max-width: 40px;  -fx-max-height: 40px;
+
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 6, 0, 0, 3);
+}
+
+.add-button:hover   { -fx-background-color: -app-primary-hover; }
+.add-button:pressed { -fx-background-color: -app-primary-dark; }
+
+/* ==========================================================================
+   6. ZONE DE DÉFILEMENT (SCROLLPANE & SCROLLBAR)
+   ========================================================================== */
+.custom-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.custom-scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.custom-scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-width: 8px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.custom-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #4b4b56;
+    -fx-background-radius: 4px;
+}
+
+.custom-scroll-pane .scroll-bar:vertical .thumb:hover   { -fx-background-color: -app-primary; }
+.custom-scroll-pane .scroll-bar:vertical .thumb:pressed { -fx-background-color: -app-primary-dark; }
+.custom-scroll-pane .scroll-bar:vertical .track         { -fx-background-color: transparent; }
+
+.custom-scroll-pane .scroll-bar:vertical .increment-button,
+.custom-scroll-pane .scroll-bar:vertical .decrement-button,
+.custom-scroll-pane .scroll-bar:vertical .increment-arrow,
+.custom-scroll-pane .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: " ";
+}
+
+/* ==========================================================================
+   7. INTERFACE DU POPUP MODAL (OVERLAY & COMPOSANTS)
+   ========================================================================== */
+.popup-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+}
+
+.popup-box {
+    -fx-background-color: -app-bg-popup;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-color: -app-border-color;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 25, 0, 0, 12);
+}
+
+.popup-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -app-text-main;
+}
+
+.popup-input {
+    -fx-background-color: -app-bg-input;
+    -fx-text-fill: -app-text-main;
+    -fx-border-color: -app-border-color;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px;
+}
+
+.popup-input:focused {
+    -fx-border-color: -app-primary;
+}
+
+.popup-btn-primary {
+    -fx-background-color: -app-primary;
+    -fx-text-fill: -app-text-main;
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 6px;
+}
+
+.popup-btn-secondary {
+    -fx-background-color: #4a4a55;
+    -fx-text-fill: -app-text-main;
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 6px;
+}
+
+.popup-btn-primary:hover   { -fx-background-color: -app-primary-hover; }
+.popup-btn-secondary:hover { -fx-background-color: #5a5a66; }
+
+
+/* ==========================================================================
+   8. STYLE DES NOTIFICATIONS (TOASTER)
+   ========================================================================== */
+.toast-base {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-min-width: 80px;
+    -fx-min-heght: 40px;
+    -fx-max-width: 280px;
+    -fx-max-height: 140px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 6);
+}
+
+.toast-icon {
+    -fx-font-size: 16px;
+}
+
+.toast-message {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+/* --- VARIATIONS DE STYLES --- */
+.toast-info {
+    -fx-background-color: #1e3a8a; /* Bleu foncé */
+    -fx-border-color: #3b82f6;      /* Bordure bleue */
+}
+
+.toast-error {
+    -fx-background-color: #7f1d1d; /* Rouge foncé */
+    -fx-border-color: #ef4444;      /* Bordure rouge */
+}
+
+.toast-warning {
+    -fx-background-color: #78350f; /* Orange/Ambre foncé */
+    -fx-border-color: #f59e0b;      /* Bordure orange */
+}
+
+.toast-success {
+    -fx-background-color: #064e3b; /* Vert foncé */
+    -fx-border-color: #10b981;      /* Bordure verte */
+}

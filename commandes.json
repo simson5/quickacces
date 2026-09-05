@@ -1,0 +1,23 @@
+[
+  {
+    "id": "CMD_2",
+    "nom": "Ouvrir Calculatrice",
+    "description": "Ouvre l'application de calculatrice Windows.",
+    "icon": "🧮",
+    "ligneDeCommande": "calc.exe"
+  },
+  {
+    "id": "c5f3e9b1-7a8b-4c2d-9e1f-6a7b8c9d0e1f",
+    "nom": "Ouvrir Paint",
+    "description": "",
+    "icon": "🎨",
+    "ligneDeCommande": "mspaint.exe"
+  },
+  {
+    "id": "41f3e0cb-7713-4ccc-bc0f-dfc39562a7eb",
+    "nom": "test 1",
+    "description": "",
+    "icon": "⚙️",
+    "ligneDeCommande": "test"
+  }
+]

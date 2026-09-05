@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:id="popupBox" alignment="CENTER" fillWidth="false" prefWidth="450.0" spacing="15.0"
+      styleClass="popup-box" stylesheets="@../style/quick-acces.css"
+      maxWidth="450.0" maxHeight="350.0"
+      xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="org.example.controller.AddCommandController">
+    <children>
+        <!-- Le titre changera dynamiquement en Java (Ajouter ou Modifier) -->
+        <Label fx:id="popupTitleLabel" styleClass="popup-title" text="Nouvelle Commande" />
+
+        <TextField fx:id="nameField" promptText="Nom de la commande" prefWidth="380.0" styleClass="popup-input"/>
+
+        <TextField fx:id="iconField" promptText="Émoji / Icône (ex: 🚀)" prefWidth="380.0" styleClass="popup-input"/>
+
+        <TextField fx:id="commandLineField" promptText="Ligne de commande (ex: notepad.exe)" prefWidth="380.0" styleClass="popup-input"/>
+
+        <TextArea fx:id="descriptionField" promptText="Description de l'action..." prefWidth="380.0" prefHeight="80.0" wrapText="true" styleClass="popup-input"/>
+
+        <HBox spacing="15.0">
+            <children>
+                <Button onAction="#handleCancel" styleClass="popup-btn-secondary" text="Annuler" />
+                <Button fx:id="saveButton" onAction="#handleSave" styleClass="popup-btn-primary" text="Créer" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+</VBox>

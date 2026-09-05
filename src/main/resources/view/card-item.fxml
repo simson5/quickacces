@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<VBox fx:id="cardRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="130.0" prefWidth="250.0" styleClass="card-box" stylesheets="@../style/quick-acces.css"
+      xmlns="http://javafx.com" xmlns:fx="http://javafx.com">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <!-- Label simulé en icône textuelle (ex: 🚀) -->
+                <Label fx:id="iconLabel" styleClass="card-icon" text="⚙️" />
+                <TextField fx:id="titleLabel" editable="false" styleClass="selectable-text-field"
+                           text="Titre" HBox.hgrow="ALWAYS" />
+                <Button fx:id="showCardButton" focusTraversable="false" styleClass="card-show-btn" text="👁️" />
+                <Button fx:id="editCardButton" focusTraversable="false" styleClass="card-edit-btn" text="✏️" />
+                <Button fx:id="deleteCardButton" focusTraversable="false" styleClass="card-delete-btn" text="🗑️" />
+            </children>
+        </HBox>
+        <TextArea fx:id="descriptionLabel" editable="false" prefHeight="70.0" prefWidth="230.0"
+                  styleClass="selectable-text-area" text="Ceci est une description en dur pour tester le comportement du texte."
+                  wrapText="true" VBox.vgrow="ALWAYS" focusTraversable="false" />
+    </children>
+</VBox>
